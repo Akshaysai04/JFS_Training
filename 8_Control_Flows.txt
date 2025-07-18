@@ -1,0 +1,652 @@
+								Control Flows/Statements/Structures
+								===================================
+a typical class looks like this:
+--------------------------------
+class Student {
+	int age;
+	String name;
+	
+	Student(int age, String name) {
+		this.age=age;
+		this.name=name;
+	}
+	
+	String displayStudent() {
+		// logic 
+		statement1
+		statement2
+		if(condition1) {
+			statement3
+		} else {
+			statement4
+		}
+		for() {
+		}
+		statement5
+		statement6
+		return name+" "+age;
+	}
+}
+
+4 major constructs OOP are: class, var, constructor & method
+Out of all 4 OOP constructs, the logic is written in methods, in the logic we will employ conditions and loops.
+
+The statements written inside our methods are generally executed from top to bottom, in the order that they appear. Control flow statements, however, break up the flow of execution by employing decision making, looping, and branching, enabling your method to conditionally execute particular blocks of code. This section describes the decision-making statements (if, if-else, if-else if-else, nested-if, switch-case-default, ternary operator), the looping statements (for, enhanced-for, while, do-while), and the branching statements (break, continue, return) supported by the Java programming language.
+
+	+ selection/conditions
+	+ iteration/loops
+	+ and jump 
+
+Selection statements allow your program to choose different paths of execution based upon the outcome of an expression or the state of a variable. Iteration statements enable program execution to repeat one or more statements (that is, iteration statements form loops). Jump statements allow your program to execute in a nonlinear fashion. All of Java’s control statements are examined here.
+
+Select (if, if-else, if-else if-else, nested-if, switch, Ternary)
+Iterations/Loops (for, forEach, while, do-while)
+Transfer (break, continue, return)
+						Conditions (if, switch, ternary) 
+						--------------------------------
+SimpleIfCondition
+-----------------
+// SimpleIfCondition.java
+import java.util.*;
+public class SimpleIfCondition {
+	
+  public static void main(String rags[]) {
+  
+    // int i = 10;
+	// int i = Integer.parseInt(rags[0]);
+	
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Please enter integer value: ");
+	int i = sc.nextInt();
+	
+    if(i%2 == 0)  {
+		// Yes 10 is a even value
+		System.out.println("Yes "+ i +" is a even value");
+    }
+  }
+}
+
+
+SimpleIfElseCondition
+---------------------
+// SimpleIfElseCondition.java
+import java.util.*;
+public class SimpleIfElseCondition {
+  public static void main(String rags[]) {
+	// i=11;
+
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Please enter integer value");
+	int i = sc.nextInt();
+	
+	if(i%2 == 0) {
+	  // System.out.println("Yes 'i' is an even value");
+	  System.out.println("Yes "+ i +" is an even value");
+	} else {
+	  // System.out.println("Yes 'i' is an odd value"); 
+	  System.out.println("Yes "+ i +" is an odd value");
+	}
+  }
+}
+
+SimpleIfElseIfElseCondition
+---------------------------
+// SimpleIfElseIfElseCondition.java
+class SimpleIfElseIfElseCondition {
+
+	public static void main(String rags[]) {
+	
+		int marksPercentage=90;
+		
+		if(marksPercentage<=90 && marksPercentage>80) {
+			System.out.println("First Class");
+		} else if(marksPercentage<=80 && marksPercentage>70) {
+			System.out.println("Second Class");
+		} else {
+			System.out.println("Pass");
+		}
+		
+	}
+}
+
+NestedIfElseCondition
+---------------------
+// NestedIfElseCondition.java
+public class NestedIfElseCondition {
+
+  public static void main(String rags[]) {
+  
+    int i=Integer.parseInt(rags[0]);
+	
+    if(i%2 == 0)  {
+      System.out.println("Yes 'i' is an even value");
+	  
+      if(i < 50) {
+        System.out.println("Your i value is an even value that is below 50");
+      }
+	  
+    } else {
+        System.out.println("'i' value is an odd value"); 
+    }
+  }
+}
+
+javac NestedIfElseCondition.java
+java NestedIfElseCondition 10
+			   49
+			   51
+			   60
+
+IfConditionOnDiffDataTypes
+--------------------------
+// IfConditionOnDiffDataTypes.java
+public class IfConditionOnDiffDataTypes {
+	public static void main(String rags[]) {
+		double pi=22/7;
+		if(pi == 3.1428571428571428571428571428571) {
+		   System.out.println("pi is a pi value "+pi);
+		}
+
+		char ch=65; // because I remember the ASCII value of 'A' only.
+		ch='A'; // because I remember the ASCII value of 'A' only.
+		if(ch==65) {
+		  System.out.println("A ASCII value is 65");
+		}
+
+		/* Note: == operator must be applied on primitive datatypes only but not on secondary data types (arrays and classes) */
+		/* String is a pre-defined class and Emp is a user defined class. */
+		/* == operator on secondary data types compares their address but not their state. Instead equals() method must be used on objects. equals() is a common method in all java classes. */
+		
+		String str="Active";
+		if(str.equals("active")) {
+		  System.out.println("str is not a lower case active. Perhaps A is CAPITAL Letter or ALL CAPS");
+		} else {
+		  System.out.println("str is a lower case active"); 
+		}
+
+		str="ActiveNET";
+		if(str.equalsIgnoreCase("activenet")) {
+		  System.out.println("str is ACTIVENET, its case may a lower case or UPPERCASE or ProperCase or Sentencecase ");
+		}
+	}	
+}
+
+
+Emp e1=new Emp(1, "ABC", 20000.00, "Developer");
+Emp e2=new Emp(2, "XYZ", 10000.00, "Designer");
+Dept d1=....
+
+if(e1.equals(e2) {
+}
+
+
+// Emp.java
+class Emp extends Object {
+  
+  int eid;
+  String ename;
+  double sal;
+  String desig;
+  
+  @Override
+  public boolean equals(Object o) {
+    boolean flag=false;
+	
+	/* without comparing o with Emp class type, if typecasting takes place, if object is not of the expected type then ClassCastException raises. */
+	
+    if(o instanceof Emp) {
+	
+      Emp e=(Emp)o;
+      if(this.eid==e.eid && this.ename.equals(e.ename) && this.sal==e.sal && this.desig.equals(e.desig)) {
+        flag=true;
+      } else {
+        flag=false;
+      }// else
+    }// if()
+	
+	return flag;
+  }
+}
+
+
+// AnotherIfConditionOnDiffDataTypes.java
+public class AnotherIfConditionOnDiffDataTypes {
+  public static void main(String rags[]) {
+  
+    double pi=22/7;
+    if(pi == 3.1428571428571428571428571428571) {
+       System.out.println("pi is a pi value "+pi);
+    }
+
+    char ch=65; // because I remember the ASCII value of 'A' only.
+    ch='A'; // because I remember the ASCII value of 'A' only.
+    if(ch==65) {
+      System.out.println("A ASCII value is 65");
+    }
+
+	/* Note: == operator must be applied on primitive datatypes only but not on secondary data types (arrays and classes) */
+	/* String is a pre-defined class and Emp is a user defined class. */
+	/* == operator on secondary data types compares their address but not their state. Instead equals() method must be used on objects. equals() is a common method in all java classes. */
+	
+    String str="Active";
+    if(str.equals("active")) {
+      System.out.println("str is not a lower case active. Perhaps A is CAPITAL Letter or ALL CAPS");
+    } else {
+      System.out.println("str is a lower case active"); 
+    }
+
+    str="ActiveNET";
+    if(str.equalsIgnoreCase("activenet")) {
+      System.out.println("str is ACTIVENET, its case may a lower case or UPPERCASE or ProperCase or Sentencecase ");
+    }
+
+	/*
+	Note: primitive datatype values can be compared using == operator. Objects must be always compared using .equals(). == operation on objects will verify their memory locations but not their internal state.
+	*/
+
+    java.util.Date todate=new java.util.Date();
+    if(todate.equals(new java.util.Date(System.currentTimeMillis()))) {
+      System.out.println("Today's date is "+todate);
+    } else {
+      System.out.println("Actually Date class object and new Date(System.currentTimeMillis()) both contains the same date but time differs in milliseconds that’s why condition fails");
+    }
+	
+    Emp e1=new Emp();
+    e1.eid=1; e1.ename="ABC"; e1.sal=10000.00; e1.desig="Developer";
+
+    Emp e2=new Emp();
+    e2.eid=1; e2.ename="ABC"; e2.sal=10000.00; e2.desig="Developer";
+
+    Emp e3=e1;
+
+    if(e1==e2) {
+      System.out.println("e1==e2 "+(e1==e2));
+    } else {
+      System.out.println("e1!=e2 "+(e1==e2));
+    }
+
+    if(e1.equals(e2)) {
+      System.out.println("e1.equals(e2) "+e1.equals(e2));
+    } else {
+      System.out.println("e1, e2 are not equal "+(e1.equals(e2)));
+    }
+
+    if(e1==e3) {
+      System.out.println("e1==e3 "+(e1==e3));
+    } else {
+      System.out.println("e1!=e3 "+(e1==e3));
+    }
+	
+	e1.ename="Antonio";
+	System.out.println(e3.ename);
+  }// main()
+}// class
+
+/* Switch case can be written only on integers and characters but not on double and Strings. */
+// SwitchDemo.java
+import java.util.*;
+public class SwitchDemo {
+  public static void main(String rags[]) { 
+	System.out.println("Enter your birth month");
+	Scanner sc=new Scanner(System.in);
+	int month=sc.nextInt();
+	switch(month) {
+		  case 1: 
+			System.out.println("Current month is January");
+			break;
+		  case 2:
+			System.out.println("Current month is February"); 
+			break;
+		  case 3: 
+			System.out.println("Current month is March");
+			break;
+		  case 4: 
+			System.out.println("Current month is April"); 
+			break;
+		  case 5:
+			System.out.println("Current month is May"); 
+			break;
+		  default:
+			System.out.println("Current month is above May");
+			break;
+	}
+
+	char ch='C';
+	switch(ch) {
+		  case 'A': 
+			System.out.println("Current month is January"); 
+			break;
+		  case 'B': 
+			System.out.println("Current month is February"); 
+			break;
+		  case 'C': 
+			System.out.println("Current month is March"); 
+			break;
+		  case 'D': 
+			System.out.println("Current month is April"); 
+			break;
+		  case 'E': 
+			System.out.println("Current month is May"); 
+			break;
+		  default: 
+			System.out.println("Current month above May"); 
+			break;
+	}
+  }
+}
+
+Note: switch allows only int and char, but not float, double, String, array and objects.
+
+Ternary statement:
+------------------
+Two Operators (? :) in between Three Operands
+// TernaryDemo.java
+public class TernaryDemo {
+	public static void main(String rags[]) {
+	
+		int i=10;
+		
+		if(i%2==0) {
+			System.out.println("i is even");
+		} else {
+			System.out.println("i is odd");
+		}
+
+		String output = (i%2==0)?"i is even value":"i is odd value";
+		System.out.println(output);
+	}
+}	
+
+
+					Loops (for, for-each, while, do-while Loops)
+					--------------------------------------------
+Loops are classified into:
+i) Definite Loops - knows how many iterations to iterate
+ii) Indefinite Loops - don't know how many times loop iterate, but there is finite iteration
+iii) Infinite Loops - loop iterates for unlimited number of iterations
+
+for(), nested-for loop, break, continue, for-each loop, while, do-while loop
+
+for loop:
+---------
+	syntax:
+	-------
+		for(var decl&init; condition_for_term; increment/decrement) {
+			logic
+		}
+
+	definite loop:
+	--------------
+		for(int i=0; i<10; i++) {
+			System.out.println(i);
+		}
+
+	// DefiniteForLoop.java
+	public class DefiniteForLoop {
+	  public static void main(String rags[]) {
+	  
+		// for (declaration & initialization; termination condition; increment/decrement) { }
+		// for(;;) { }
+		// for(int i=1; i<=20;) { }
+		for(int i=1; i<=20; i++) {
+		   System.out.println("17 X "+i+" = "+(17*i));
+		}
+
+		System.out.println("*************************************");
+
+		for(int i=20; i>=1; i--) {
+		   System.out.println("5 X "+ i +" = "+(5*i));
+		}
+		
+	  }
+	}
+	
+	indefinite loop:
+	----------------
+		[
+			emp {eid:1,ename:"Raju",sal:0.0,desig:""}, 
+			emp {eid:1,ename:"Sudhakar",sal:0.0,desig:""}
+		];
+	
+	// IndefiniteLoop.java
+	class IndefiniteLoop {
+		public static void main(String rags[]) {
+			String names[]={"Sudhakar", "Raju", "Surya", "", "", "", ""};
+			int len=names.length; // in java 'length' is a array property
+			for(int i=0;i<len;i++) {
+				String name=names[i];
+				if(name.length()<5) {
+					System.out.println(names[i]);
+				} else {
+					continue;
+				}
+			}
+		}
+	}	
+
+	infinite loop:
+	--------------
+		int i=0;
+		for(;;) {
+			System.out.println(i++);
+		}
+		
+		while(true) {
+		}
+
+for-each loop:
+--------------
+	old technique of iterating over loop:
+	-------------------------------------
+		String names[]={"Sudhakar", "Raju", "Surya"};
+		find len of the array
+		iterate for loop for len number of times
+		inside loop access each index value of the array
+
+	// ForEachLoop.java
+	class ForEachLoop {
+		public static void main(String rags[]) {
+			String names[]={"Sudhakar", "Raju", "Surya"};
+			for(String name:names) {
+				// System.out.println(name);
+
+				// String startLetter=name.substring(0,1);
+				// System.out.println(startLetter);
+
+				int len=name.length();
+				String endLetter=name.substring(len-1,len);
+				System.out.println(endLetter);
+			}
+		}
+	}
+	
+For-Each Loop (or) Enhanced For Loop is a new loop concept introduced in JDK 1.5. 
+
+	// ForEachLoop.java
+	public class ForEachLoop {
+	  public static void main(String rags[]) {
+	  
+		// datatype array_var[]=new datatype[size];
+		// static array declaration
+		String greetings[]=new String[3];
+		
+		// array initialization
+		greetings[0]="Welcome to Core Java";
+		greetings[1]="By Suryanarayana";
+		greetings[2]="ABC";
+
+		// dynamic array declaration
+		// String greetings[] = {"Welcome to Core Java", "By Suryanarayana", "ActiveNET"};
+		
+		// iterate greetings array
+		// findout out the length
+		int len=greetings.length;
+		
+		// iterate for loop to access all the indexes of array
+		for(int i=0;i<len;i++) {
+			System.out.println(greetings[i]);
+		}
+		
+		// In JDK 1.5 introduced a feature called for-each loop
+		// for each element/item/entry in the array, loop iterates once
+		for(String str:greetings) {
+		  System.out.println(str);
+		}
+
+		java.util.List list=new java.util.ArrayList();
+		list.add("Welcome to Core Java");
+		list.add("By Suryanarayana");
+		list.add("ABC");
+		list.add(new Integer(10));
+		list.add(1);
+		list.add(10.24);
+		list.add(new Double(20.35));
+		list.add(true);
+		list.add('A');
+		for(Object obj:list) {
+		  // System.out.println(obj);
+		  if(obj instanceof Integer) {
+			 System.out.println((Integer)obj);
+		  } else
+		  if(obj instanceof Double) {
+			 System.out.println((Double)obj); 
+		  } else
+			  if(obj instanceof String) {
+			 System.out.println((String)obj);
+		  } else
+		  if(obj instanceof Boolean) {
+			 System.out.println((Boolean)obj);
+		  } else
+		  if(obj instanceof Character) {
+			 System.out.println((Character)obj);
+		  } else {
+			 System.out.println("The value id different...."+obj);
+		  }
+		}
+
+		java.util.List<String> list1=new java.util.ArrayList<String>();
+		list1.add("Welcome to Core Java");
+		list1.add("By Suryanarayana");
+		list1.add("ABC");
+		for(String str:list1) {
+		  System.out.println(str);
+		}
+	  }
+	}
+
+while loop:
+-----------
+	syntax:
+	-------
+	var decl&init;
+	while(cond_for_term) {
+		logic
+		incr/decr
+	}
+	
+	definite while loop:
+	--------------------
+	int i=0;
+	while(i<10) {
+		System.out.println(i);
+		i++;
+	}
+
+	// WhileDoWhileLoop.java
+	public class WhileDoWhileLoop {
+	  public static void main(String rags[]) {
+	  
+		// for(decl & init;condition;incr/decr) { }
+		
+		int n=10;
+		int sum=0;
+		while(n>0) {
+			sum=sum+n;
+			n--;
+		   // sum=sum+n--;
+		   // sum+=n--;
+		}
+		
+		System.out.println(sum);
+		
+		int n1=10;
+		int sum1=0;
+		do {
+		   // sum1=sum1+n1--;
+		   sum1+=n1--;
+		} while(n1>0);
+		
+		System.out.println("The sum of value from 1 to 10 are "+sum1);
+	  }
+	}
+
+	// AnotherWhileDoWhileLoop.java
+	public class AnotherWhileDoWhileLoop {
+	  public static void main(String rags[]) {
+		int n=Integer.parseInt(rags[0]);
+		int sum=0;
+		while(n>0) {
+		   System.out.println("iam in while loop");
+		   sum=sum+n--;
+		}
+		System.out.println(sum);
+		
+		int n1=Integer.parseInt(rags[0]);
+		int sum1=0;
+		do {
+		   System.out.println("iam in do-while loop");
+		   sum1=sum1+n1--;
+		} while(n1>0);
+		
+		System.out.println("The sum of value from 1 to "+rags[0]+" are "+sum1);
+	  }
+	}
+	
+HW: Do the multiplication example both foward and reverse using while loop
+
+do-while loop:
+--------------
+HW: Do the multiplication example both foward and reverse using while loop
+
+
+break and continue:
+-------------------
+	break breaks the iteration of loop, 
+	continue skips the current iteration of the loop.
+	
+// BreakAndContinue.java
+public class BreakAndContinue {
+
+  public static void main(String rags[]) {
+  
+	int n=5;
+	for(int i=1;i<=n;i++) {
+	  if(n*i>10) {
+	   System.out.println("Exiting loop"+(n*i));
+	   break;
+	  }
+	  System.out.println(i+" X "+n+" = "+(n*i));
+	}// for()
+
+	int i=0;
+	while(++i<10) {
+	  if(i%2==0) {
+		continue;
+	  }
+	  System.out.println(i);
+	}
+  }
+}
+
+Raju Assignment:
+----------------
+print area of rectangle where length is 2 mts and breadth is 4 mts?
+
+you have entered length as 2 mts
+you have entered breadth as 4 mts
+
+area of rectangle = length * breadth
+
+area of rectangle = 2 * 4
+
+area of rectangle is  = 8

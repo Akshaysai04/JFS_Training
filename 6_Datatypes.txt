@@ -1,0 +1,529 @@
+				Data types, memory, ranges, default value, declare & initialize var, conversions
+				====================================================
+
+	- type conversion using type casting statements
+	- type conversion using wrapper classes
+
+Data types, their memory, data types ranges, their default values, variable declaration, initialization, type casting and conversions using wrapper classes:
+----------------------------------------------
+Is Java datatypes are signed datatypes or unsigned datatypes?
+Signed datatypes
+
+C, C++ supports ASCII range characters char ch='A';
+Java supports Unicode range characters char ch='A';
+
+Primitive data types:
+---------------------
+Numeric data types:
+   Integer type data types
+	  byte 	- 1 byte - (-128 to +127),  0
+	  short - 2 bytes - (-32768 to +32767), 0
+	  int 	- 4 bytes - (-2147483648 to +2147483647), 0
+	  long 	- 8 bytes, -9,223,372,036,854,775,808 .. 9,223,372,036,854,775,807,	0L	
+	  
+   floating point data types
+	  float		- 4 bytes - (-3.402823E38 to +3.402823E38), 0.0f
+	  double	- 8 bytes - (-1.79769313486232E308 to +1.79769313486232E308), 0.0d
+Character data type:
+   char - 2 bytes, 0-255 (ASCII), 0-255,256-65535 - 65536 (Unicode), \u000
+   char ch='a'; 'A'  '0'  'Σ'
+		   97   65   48   228
+		   String frml="πΣ¥Ω"
+		   
+   For ASCII range characters in case of language supporting ASCII range chars:
+	   char ch='~'; 126
+	   char ch='¥'; 157 instead -108
+   
+   For ASCII range characters in case of language supporting Unicode range chars:
+	   char ch='~'; 126
+	   char ch='¥'; 157
+
+boolean data type
+   boolean - 1 byte, (true/false), false
+		
+Secondary data types:
+---------------------
+   arrays - int i[]=new int[10]; i[0]=1; i[9]=10; 	int j[]={1,2,3,4,5};
+   classes - class Emp {}, class Student {}, class Customer {}
+   
+// DataTypeRangeTest.java
+public class DataTypeRangeTest {
+  public static void main(String rags[])  {
+      // byte b=-128b; // valid
+      // byte b=-129;// compilation error, possible loss of precision
+      // byte b=127B;
+      // byte b=128;
+
+      byte b=127b;
+      byte b1=127B;
+
+      short s=-32768s;
+      short s1=32767S;
+
+      int i=-2147483648i;
+      // int i1=2147483648; // integer number too large
+      int i1=2147483647I; 
+      // all integer literals are by default treated as int hence long value must suffix with l or L
+
+      long l=-2147483649L;
+      long l1=2147483648L;
+
+      float f=-3.402823E38F;
+      float f1=+3.402823E38f;
+      // all floating point literals are by default treated as double hence float value must suffix with f or F
+
+      double d=-1.79769313486232E307d;
+      double d1=1.79769313486232E307D;
+	     
+      char ch='A';
+      char ch1=65;
+	  
+	  boolean boo=true;
+  }
+}
+
+Type Convesion using typecasting and wrapper classes:
+=====================================================
+Type casting:
+-------------
+Type casting is used to convert one data type value to another data type value such as int to double, double to int conversion etc. But primitive data type values are not recommended to convert one type to other type instead wrapper classes must be used. Type casting is used more oftenly to convert one type of object to another type of object.
+
+byte b0=127b; // wide casting; assigning lower value to higher value
+short s0=b0;
+int i0=b0;
+long l0=b0;
+float f0=b0;
+double d0=b0;
+
+int i1=10;
+byte b1=(byte)i1; // narrow casting needs typecasting
+short s1=(short)i1;  // narrow casting needs typecasting
+long l1=i1; // wide casting don't need typecasting
+float f1=i1; // yes
+double d1=i1; // yes
+
+long l2=12345567890L;
+byte b2=(byte)l2;
+short s2=(short)l2;
+int i2=(int)l2;
+float f2=(float)l2;
+double d2=l2;
+
+double d3=10.24;
+byte b3=(byte)d3;
+short s3=(short)d3;
+int i3=(int)d3;
+long l3=(long)d3;
+float f3=(float)d3;
+
+// TypeCastingAndConversionDemo.java
+public class TypeCastingAndConversionDemo {
+   public static void main(String rags[]) {
+      int i=10;
+	  double d=i; // possible. Widecasting. No typecasting required for widecasting 
+	  d=(double)i;
+	  
+	  System.out.println(d); // 10.0
+	  
+	  double dd=10.2345;
+	  // int j=dd; // compilation error saying possible loss of precision. narrow casting needs typecasting
+	  int j=(int)dd; // compilation error saying possible loss of precision
+	  System.out.println(j); // 10
+	  
+	  /* 
+	  The recommended way to convert one primitive type to another primitive type is in java.lang package wrapper classes are provided for each primitive data type names Byte, Short,Integer,Long, Float, Double, Character and Boolean. Byte, Short, Integer, Long, Float and Double classes are derived from java.lang.Number class. Number class is derived from Object and implemented from Serializable and Comparable interfaces. 
+	  
+	  Why Number class is super class to all these classes is methods which are commonly required from Byte to Double class are all implemented and given in Number class.
+	  
+	  The methods are byteValue(), shortValue(), intValue(), longValue(), floatValue(), doubleValue()
+	  
+	  To convert double - int, first of all we need to wrap double value into Double class object through its constructor.
+	  
+	  double dd=10.2345;
+	  Double ddd=new Double(dd);
+	  
+	  and then call intValue() on Double class object.
+	  
+	  int j=ddd.intValue();
+	  
+	  Every wrapper class is having one public String parameter constructor and one same datatype value as parameter in its constructor.
+	  */
+	  Double ddd=new Double(dd);
+	  j=ddd.intValue();
+	  System.out.println(j);
+	  
+     dd=10.678;
+	  ddd=new Double(dd);
+	  j=ddd.intValue();
+	  System.out.println(j);
+	 
+	  /* one more commonly used conversion is String to int and double. int and double can be converted into String easily by concatenating empty string to int. for example
+	  
+	  j=10;
+	  String str=j+"";
+	  d=10.2345;
+	  str=d+"";
+	  
+	  String - int
+	  String str="10";
+	  
+	  // wrapping String into Integer class constructor
+	  Integer ii=new Integer(str);
+	  j=ii.intValue();
+	  System.out.println(j);
+	  
+	   ii=Integer.valueOf(str);
+	   j=ii.intValue();
+	  System.out.println(j);
+	  
+	  j=Integer.parseInt(j);
+	  System.out.println(j);
+	  */
+	String str="10";
+	  
+	  // wrapping String into Integer class constructor
+	Integer ii=new Integer(str);
+	j=ii.intValue();
+	System.out.println(j);
+	  
+	ii=Integer.valueOf(str);
+	j=ii.intValue();
+	  System.out.println(j);
+	  
+	  j=Integer.parseInt(str);
+	  System.out.println(j);
+   }
+}
+
+// AnotherWrapperClassExample.java
+public class AnotherWrapperClassExample {
+   public static void main(String rags[]) {
+      
+	  int i=325;
+	  byte b=(byte)i;
+	  System.out.println(b);
+	  
+	  Integer ii=new Integer(i);
+	  System.out.println(ii.byteValue());
+	  System.out.println(ii.shortValue());
+	  System.out.println(ii.intValue());
+	  System.out.println(ii.longValue());
+	  System.out.println(ii.floatValue());
+	  System.out.println(ii.doubleValue());
+	  
+	  double d=12.325;
+	  System.out.println((int)d);
+	  Double dd=new Double(d);
+	  System.out.println(dd.byteValue());
+	  System.out.println(dd.shortValue());
+	  System.out.println(dd.intValue());
+	  System.out.println(dd.longValue());
+	  System.out.println(dd.floatValue());
+	  
+	  String str1="10";
+	  int i1=Integer.parseInt(str1);
+	  System.out.println(i1);
+	  
+	  String str2="10.24";
+	  double d1=Double.parseDouble(str2);
+	  System.out.println(d1);
+   }
+}
+
+
+Regarding wrapper classes:
+--------------------------
+Wrapper classes mainly serves two purposes:
+i) Convert one primitive type to other primitive type. For this we can use both type casting and wrapper classes.
+ii) Convert String to int/long/double and vice-versa because user input is always in a form of String. For this wrapper classes is compulsory.
+
+All wrapper classes contains two constant variables called MIN_VALUE and MAX_VALUE.
+
+Every wrapper class contains two constructors one will take same type primitve value and another will take String as a argument.
+
+Primitive 		- byte 		short		int			long	float	double	char		boolean
+
+Wrapper classes - Byte		Short		Integer		Long	Float	Double	Character	Boolean
+
+				  Byte(byte b)	
+				  Byte(String str)
+				  
+				  Short(short s)	
+				  Short(String str)
+				  
+				  Integer(int i)
+				  Integer(String str)
+
+For example:
+------------
+public Integer(int i)
+public Integer(String str)
+
+All wrapper classes are having 6 methods called
+	byte byteValue()
+	short shortValue()
+	int intValue()
+	long longValue()
+	float floatValue()
+	double doubleValue()
+
+int/long/float/double parseXXX(String str)
+int parseInt(String str)
+long parseLong(String str)
+int parseInt(String str)
+
+
+Three methods of Object class are implemented:
+toString()
+equals()
+hashCode()
+
+Because all wrapper classes are implemented from Comparable interface 
+public int compareTo() method is also implemented in wrapper classes
+
+All wrapper classes are having valueOf(String str) static method that will take String as a argument.
+
+All wrapper classes are having parse method to convert String to the same datatype.
+
+For example to convert int to other primitive types:
+// IntToOthersConversion.java
+class IntToOthersConversion {
+	public static void main(String rags[]) {
+		int i1=10;
+		
+		// int wrappered into Integer
+		Integer in=new Integer(i1);
+		
+		// converted into different types
+		byte b1=in.byteValue();
+			System.out.println(b1);
+		short s1=in.shortValue();
+			System.out.println(s1);
+		long l1=in.longValue();
+			System.out.println(l1);
+		float f1=in.floatValue();
+			System.out.println(f1);
+		double d1=in.doubleValue();
+			System.out.println(d1);
+		System.out.println(b1);
+	}
+}
+
+For example to convert String to int:
+// StringIntConversion.java
+public class StringIntConversion {
+  public static void main(String rags[]) {
+     // String str="10";
+     String str=rags[0] ;
+
+      Integer i=new Integer(str);
+      int ii=i.intValue();
+      System.out.println(i+" "+ii);
+
+       ii=Integer.parseInt(str);
+       System.out.println(ii);
+
+       i=Integer.valueOf(str);
+       ii=i.intValue();
+       System.out.println(i+" "+ii);
+	   
+	   System.out.println(Integer.MIN_VALUE);
+	   System.out.println(Integer.MAX_VALUE);
+  }
+}
+
+Note: While passing String into parseInt() method if the String is not a valid String NumberFormatException comes.
+
+Assignment:
+-----------
+How to do following conversions using wrapper classes:
+------------------------------------------------------
+int i1=10; // i1 is a int datatype variable
+? int - byte, long, double, String
+
+// who can store/wrap int type variable
+Integer in=new Integer(i1); // storing int var into Integer wrapper class constructor
+
+// int - byte
+// byte b1=(byte)i1; // narrow casting (hi-lo) needs typecasting
+byte b1=in.byteValue();
+
+// int - long
+// long l1=i1; // wide casting (lo-hi) don't need any typecasting
+long l1=in.longValue();
+
+// int - double
+// double d1=i1; // wide casting (lo-hi) don't need any typecasting
+double d1=in.doubleValue();
+
+// int - String
+String str=in.toString();
+
+// String - int
+String str2="10";
+int i2=Integer.parseInt(str2);
+Note: str2="10 "; raises NumberFormatException
+----------------------------------------------
+
+double d2=10.24;
+? double - byte, int, long, String
+
+Double dd=new Double(d2);
+
+// double - byte
+// byte b2=(byte)d2;
+byte b2=dd.byteValue();
+
+// double - int
+// int i2=(int)d2;
+int i2=dd.intValue();
+
+// double - long
+// long l2=(long)d2;
+long l2=dd.longValue();
+
+// double - String
+String str2=ss.toString();
+
+// String - double
+String str3="12.34";
+double d3=Double.parseDouble(str3);
+------------------------------------------------------------
+
+
+
+
+Datatypes, their memory occupation, their range, variable declaration & initialization, datatype type conversion using typecasting & wrapper classes:
+-------------------------------------------------------------
+Pre-defined/Primitive datatypes:
+--------------------------------
+Number Datatypes:
+-----------------
+	Integer datatypes:
+	------------------
+	byte			1 byte		byte b1=0b; (-128 to 127)
+	short			2 bytes		short s1=0s; (-32768 to 32767)
+	int				4 bytes		int i1=0; (-2147483648 to +2147483647)
+	long			8 bytes		long l1=0L;
+	All int literals (0 or 1 or 250 or 456) in java are treated as int value.
+	
+	Float-point datatypes:
+	----------------------
+	float			4 bytes	  float f1=12.24f; (-3.402823E38 to +3.402823E38)
+	double			8 bytes	  double d1=12.24; (-1.79769313486232E308 to +1.79769313486232E308)
+	All floating point literals (12.24, 23.45) in java are treated as double value.
+	
+	Other datatypes:
+	----------------
+	char			2 bytes		char b/w ASCII (0-255) & Unicode chars (0-65535)
+	boolean			1 byte		true/false
+
+User-defined/Secondary datatypes:
+---------------------------------
+	Arrays int i[]=new int[10]; Student s[]=new Student[10];
+	Class defined by user (Student, Employe, Customer)
+	
+Type conversions:
+-----------------
+primitive-primitive conversion using typecasting: 
+-------------------------------------------------
+int-double
+10	10.0
+
+double-int
+10.24 - 10
+
+// TypecastingDemo.java
+class TypecastingDemo {
+	public static void main(String rags[]) {
+		byte b1=10b;
+		short s1=b1;
+		int i1=b1;
+		long l1=b1;
+		float f1=b1;
+		double d1=b1;
+		
+		short s2=132s;
+		byte b2=(byte)s2; // byte casting needed when assign higher value to lower value
+		int i2=s2; // wide casting don't need typecasting
+		long l2=s2;
+		float f2=s2;
+		double d2=s2;
+		
+		int i3=12;
+		byte b3=(byte)i3; // narrow casting needs type casting
+		short s3=(short)i3;
+		long l3=i3;
+		float f3=i3;
+		double d3=i3;
+		
+		long l4=1234L;
+		byte b4=(byte)l4;
+		short s4=(short)l4;
+		int i4=(int)l4;
+		float f4=(float)l4;
+		double d4=l4;
+		
+		float f5=12.34f;
+		byte b5=(byte)f5;
+		short s5=(short)f5;
+		int i5=(int)f5;
+		long l5=(long)f5;
+		double d5=f5;
+		
+		double d6=10.24;
+		byte b6=(byte)d6;
+		short s6=(short)d6;
+		int i6=(int)d6;
+		long l6=(long)d6;
+		float f6=(float)d6;
+	}
+}
+
+primitive-primitive conversion using wrapper classes: 
+-----------------------------------------------------
+Wrapper classes are mainly used to convert String to primitive and as well as to convert from one primitive to another primitive.
+
+String str="10"; // int literal in String literal
+int i=(int)str; // wrong; type casting cannot be used to convert String to int
+// only wrapper class must be used to convert String to int/long/float/double
+
+Each primitive datatype is having one-one wrapper class. Wrapper classes wraps their respective primitive values.
+
+pds: byte	short	int			long	float		double		char		boolean
+wcs: Byte	Short	Integer		Long	Float		Double		Character	Boolean
+
+Example on converting byte-other primitive types and String-byte conversion:
+----------------------------------------------------------------------------
+byte b1=10b;
+Byte by=new Byte(b1); // primitive value 10b is wrapped into Byte object
+
+In each wrapper class 6 methods are given:
+byte b2=by.byteValue();
+short s2=by.shortValue();
+int i2=by.intValue();
+long l2=by.longValue();
+float f2=by.floatValue();
+double d2=by.doubleValue();
+String str1=by.toString();
+
+str1="10";
+b2=Byte.parseByte(str1);
+
+Example one converting int-other primitive types and String-int conversion:
+---------------------------------------------------------------------------
+int i3=10;
+Integer in=new Integer(i3);
+
+byte b3=in.byteValue();
+short s3=in.shortValue();
+long l3=in.longValue();
+float f3=in.floatValue();
+double d3=in.doubleValue();
+str1=in.toString();
+
+str1="10";
+i3=Integer.parseInt(str1);
+
+Example one converting double-other primitive types and String-double conversion:
+------------------------------------------------------------------------------

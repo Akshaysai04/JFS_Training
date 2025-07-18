@@ -1,0 +1,638 @@
+https://docs.oracle.com/javase/7/docs/api/
+https://docs.oracle.com/javase/7/docs/api/java/lang/String.html
+
+String, StringBuffer, StringBuilder
+-----------------------------------
+String:
+-------
+public final class String extends Object implements Serializable, Comparable, CharSequence {
+	
+}
+
+Object is super classes to all java classes, override equals(), hashCode(), toString() methods
+Because implemented from Serializable the String object's state can be moved from one location to another location in n/w, over distributed machines (through Socket Programming, RMI, EJB, CORBA, SOAP, REST)
+Because of Comparable the String objects are natural sorted while adding into TreeSet and TreeMap
+Because implements from CharSequence represents 16-bit chars in sequence
+
+String is a fixed length char array. Though String is a data type it is also a class unlike byte, short, int, long, float, double, boolean & char primitive data types. It is a secondary data type (arrays and classes are secondary data types). String internal representation is char array. If we store ActiveNET in String (String str="ActiveNET"), A is stored @ 0th index, c is stored @ 1 index so on like that upto T is stored in index 8 because "ActiveNET" is having 9 characters.
+
+String is a secondary data type, predefined class
+It internally represents char array
+
+To create object of a class
+
+class object creation syntax:
+-----------------------------
+ClassName objRef=new ClassNameAsConstructor();
+
+String class is having 15 constructors.
+
+String str="Anotonio";
+String str1=new String("Saketh");
+String str2="Mamun";
+String str3=new String("Habib");
+
+public String()
+public String(byte b[])
+public String(byte b[], int offset, int len)
+public String(char ch[])
+public String(char ch[], int offset, int len)
+public String(String str)
+public String(StringBuffer sb)
+public String(StringBuilder sb)
+
+String class object can be created in following number of ways:
+Except String class all other java class objects must be created with new operator and constructor. String class object can be created by directly assigning value to it. 
+
+String str="ActiveNET"; 
+without using new operator and constructor, by directly assigning value to variable/identifier String class object can be created. But such objects are stored in String pool. String objects created using new operator and constructor are stored in a seperate heap memory.
+
+String str1=new String(); // using no argument constructor
+
+byte[] b={65,99,116,105,118,101,78,69,84};
+String str2=new String(b); // using byte[] argument constructor
+
+String str3=new String(b, 0, 6);
+
+char ch[]={'A','c','t','i','v','e','N','E','T'};
+String str3=new String(ch);  // using char[] argument constructor
+
+String str4=new String(ch, 6, 3);
+
+String str5=new String("ActiveNET");  // using directly passing String value/literal into constructor
+ 
+Important methods exist in String class are:
+---------------------------------------------------
+int indexOf(char ch)
+	int idx=str.indexOf('v'); // idx is 4
+int lastIndexOf(char ch)
+	String str="mamun";
+	0=str.indexOf("m");
+	2=str.lastIndexOf("m");
+	
+boolean startsWith(String str)
+	true=str5.startsWith("Act");
+	false=str5.startsWith("act");
+boolean endsWith(String str)
+	true=str5.endsWith("NET");
+	false=str5.endsWith("net");
+
+char charAt(int index)
+	'N'=str5.charAt(6);
+
+String replace(char oldChar, char newChar)
+	"ActivENET"=str5.replace('e','E');
+
+int length()
+	9=str5.length();
+
+boolean isEmpty()
+	false=str5.isEmpty();
+	true=str1.isEmpty();
+
+byte[] getBytes() - unicode values of all the characters are returned as byte[]
+	bytre b[]=str.getBytes();
+	for(byte b1:b) {
+		System.out.print(((char)b1));
+	}
+	System.out.println();
+
+void getChars(int srcBegin, int srcEnd, char[], int destBegin) - part of the String is copied into another char array
+	char ch[]=new char[3];
+	str5.getChars(6, 9, ch, 0);
+	for(char ch1:ch) {
+		System.out.print(ch1);
+	}
+	System.out.println();
+	
+	String name="Supriya";
+	char minChar[]=new char[5];
+	name.getChars(2,6,minChars,0);
+	System.out.println(new String(minChars));
+	
+char[] toCharArray() - String is returned as array of characters
+	char ch[]=str5.toCharArray();
+	for(char ch1:ch) {
+		System.out.print(ch1);
+	}
+	System.out.println();
+
+int codePointAt(int index) - unicode value of char @ specified index
+	str5.codePointAt(0); // at index 0 char 'A' exist, what is its ASCII value? 65
+	0-255 chars ASCII range - 256 chars
+	0-65535 chars Unicode range - 65536 chars
+
+int compareTo(Object o) - used in natural sorting
+
+String concat(String anotherStr)
+	String str6=str5.concat(" Informatics");
+	"ActiveNET Informatics"
+
+boolean matches(String regExpr)
+	String str="Habib";
+	false=str.matches("\d");
+	str="Hab12ib45";
+	true=str.matches("\d");
+	true=str.matches("[abcABC]");
+	str="Habib";
+	true=str.matches("b{2}");
+	true=str.matches("b{2,3}");
+	true=str.matches("b{2,}");
+	true=str.matches("b$");
+	false=str.matches("^b");
+
+boolean regionMatches(int toOffset, String otherStr, int destOffset, int len) - part of source str compared with another part another String
+	str2="Are you having Idea Number";
+	str3="Yes iam having Idea Number";
+	true=str2.regionMatches(15, str3, 15, 4);
+
+String[] split(String regExpr) - regExpr matched Strings will be returned
+	str4="Are you having Idea Number";
+	String str5[]=str4.split("");
+	String str6[]=str4.split("\s");
+
+substring(int srcIndex, int destIndex) - part of the String will returned, destIndex-1; destIndex is exclusive
+	str7="Are you having Idea Number";
+	String str8=str7.substring(10, 14);
+	       "ving"
+		   
+String toLowerCase() - converts all chars to lowercase
+	String str9=str5.toLowerCase();
+	"activenet"
+	
+String toUpperCase() - converts all chars to UPPERCASE
+	String str10=str5.toUpperCase();
+	"ACTIVENET"
+
+String trim() - remove leading and trailing spaces means spaces exist before and after String.
+	String str10="  Supriya   ";
+	12=str10.length();
+	str10=str10.trim();
+	7=str10.length();
+
+static String valueOf(boolean b)
+static String valueOf(char ch)
+static String valueOf(char[] ch)
+static String valueOf(double d)
+static String valueOf(float f)
+static String valueOf(int i)
+static String valueOf(long l)
+static String valueOf(Object o)
+	In how many ways we can convert int to String
+	int i1=10;
+	String str8=i1+"";
+	String str9=new Integer(i1).toString();
+	String str10=String.valueOf(i1);
+
+boolean equals(Object o)
+	String str6=new String("Saketh");
+	false=str6.equals("saketh");
+	
+boolean equalsIgnoreCase(Object o)
+	true=str6.equalsIgnoreCase("saketh");
+
+int hashCode()
+	hash functionality converts variable length String into fixed length integer.
+	two ints comparision is faster than two Strings comparision
+	to make String conversion faster
+	
+    public int hashCode() {
+        int h = hash;
+        if (h == 0 && value.length > 0) {
+            char val[] = value;
+
+            for (int i = 0; i < value.length; i++) {
+                h = 31 * h + val[i];
+            }
+            hash = h;
+        }
+        return h;
+    }	
+	
+	String str11="Habib";
+	String str12="Sahkib";
+	if(str11.equals(str12)) {}
+	if(str11.hasCode()==str12.hashCode()) {}
+	
+String toString()
+
+// StringClassDemo.java
+public class StringClassDemo {
+   public static void main(String rags[]) throws Exception {
+		
+		// all String literals are instances of String class
+		String str="ActiveNET";
+
+		String str1=new String();
+
+		byte[] b={65,99,116,105,118,101,78,69,84};
+		String str2=new String(b);
+
+		String str3=new String(b, 0, 6);
+
+		char ch[]={'A','c','t','i','v','e','N','E','T'};
+		String str4=new String(ch);
+
+		String str5=new String(ch, 6, 3);
+
+		String str6=new String("ActiveNET"); 
+		
+        System.out.println(str.indexOf('e'));
+        System.out.println(str.lastIndexOf('e'));
+		
+        System.out.println(str.startsWith("Act"));
+        System.out.println(str.endsWith("NET"));
+        System.out.println(str.charAt(5));
+
+        System.out.println(str.replace('T','t'));
+		
+		System.out.println(str.length());
+		System.out.println(str.isEmpty());
+		
+		System.out.println(str1.length());
+		System.out.println(str1.isEmpty());
+		
+		byte b2[]=str.getBytes();
+		
+		// iterating over array
+		// old technique
+		int len=b2.length;
+		for(int i=0;i<len;i++) {
+			System.out.print((char)b2[i]);
+		}
+		System.out.println();
+		
+		// for-each way
+		for(byte b1:b2) {
+			System.out.print((char)b1);
+		}
+		System.out.println();
+		
+		char ch4[]=new char[9];
+		str.getChars(0, 6, ch4, 0);
+		
+		// for-each way
+		for(char ch1:ch4) {
+			System.out.print(ch1);
+		}
+		System.out.println();
+		
+		char ch2[]=str.toCharArray();
+		
+		// for-each way
+		for(char ch3:ch2) {
+			System.out.print(ch3);
+		}
+		System.out.println();
+		
+		// codePointAt(int index) returns the index given char's unicode value
+		System.out.println(str.codePointAt(5));
+		
+		// natual sorting
+		// ActiveNET
+		String str11="Activenet";
+		System.out.println(str.compareTo(str11));
+		if(str.compareTo(str11)==1) {
+			System.out.println("ActiveNET is bigger than Activenet");
+		} else if(str.compareTo(str11)==-1) {
+			System.out.println("ActiveNET is smaller than Activenet");
+		} else if(str.compareTo(str11)==0)  {
+			System.out.println("ActiveNET is equal to Activenet");
+		} else {
+			System.out.println("No result");
+		}
+		
+		System.out.println(str.concat(" Informatics Pvt Ltd"));
+
+		String str7="Are you having Idea Number";
+		String str8=str7.substring(15, 19);
+		System.out.println(str8);
+	       
+		System.out.println(str.toLowerCase());
+		System.out.println(str.toUpperCase());
+		
+		String str9="  ActiveNET   ";
+		System.out.println(str.trim()); // leading/before and trailing/after spaces are removed
+		
+		if(str.equals("Activenet")) {
+			System.out.println("ActiveNET and Activenet are equal");
+		} else {
+			System.out.println("ActiveNET and Activenet are not equal");
+		}
+		
+		if(str.equalsIgnoreCase("Activenet")) {
+			System.out.println("ActiveNET and Activenet are equal with ignore case");
+		} else {
+			System.out.println("ActiveNET and Activenet are not equal");
+		}
+		
+		System.out.println(str.hashCode());
+		
+		System.out.println(str.toString());		
+   }
+}
+
+// StringCompareDemo.java
+public class StringCompareDemo {
+   public static void main(String rags[]) throws Exception {
+		
+		/* 
+		primitive data type (byte,short,int,long,float,double,char,boolean) variables can be compared with == operator 
+		*/
+		/*
+		int i=10,j=10,k=1;
+		if(i==j) {
+		}
+		if(j==k) {
+		}
+		*/
+		
+		/* 
+		whereas secondary datatype (classes including String, array) variables cannot be compared with == operator. To compare class objects equals() method must be used.
+		*/
+		
+		/* 
+		String objects created by using direct assignment and stored in a String pool. String pool is one of the memory unit in JVM.
+		
+		Such a two String objects created with the same state (value) are points to the same memory location in the String pool.
+		*/
+		String str="ActiveNET";
+		String str1="ActiveNET";
+		String str2="activeNET";
+	   
+		/* 
+		If String objects are created using new operator and constructor are stored in JVM heap. JVM heap is one of the memory unit in JVM. In Java all objects created using new operator are stored in JVM heap only.
+		
+		Even though two String objects are created with the new operator and with the same state are stored in different addresses.
+		*/
+		String str3=new String("ActiveNET");
+		String str4=new String("ActiveNET");
+	   
+		// object address are compared
+		if(str==str1) {
+			System.out.println("str & str1 pointing to same memory location");
+		}
+	   
+		// object state/value are compared
+		if(str.equals(str1)){
+			System.out.println("str & str1 state is same");
+		}
+	   
+		if(str==str2) {
+			System.out.println("str & str2 are pointing to same memory location");
+		} else {
+	      System.out.println("str & str2 are not pointing to same memory location");	   
+		}
+	   
+	   if(str.equals(str2)) {
+	      System.out.println("str & str2 state is same");
+	   } else {
+	      System.out.println("str & str2 state are not same");	   
+	   }
+
+	   if(str==str3) {
+	      System.out.println("str & str3 are pointing to same memory location");
+	   } else {
+	      System.out.println("str & str3 are not pointing to same memory location");	   
+	   }
+	   
+	   if(str.equals(str3)){
+	      System.out.println("str & str3 state is same");
+	   } else {
+	      System.out.println("str & str3 state are not same");
+	   }
+
+	   if(str3==str4) {
+	      System.out.println("str3 & str4 are pointing to same memory location");
+	   } else {
+	      System.out.println("str3 & str4 are not pointing to same memory location");	   
+	   }
+	   
+	   if(str3.equals(str4)){
+	      System.out.println("str3 & str4 state is same");
+	   } else {
+	      System.out.println("str3 & str4 state are not same");
+	   }	   
+   }
+}
+
+Strings are immutable and StringBuffer is mutable:
+--------------------------------------------------
+What is immutable? How classes other than String class are mutable?
+What is main difference between creating String class object using new operator and by directly assigning value to variable?
+
+If String class object is created using new operator. As many number of chars exist in the String those many chars * 2 bytes memory will be allocated to String class object. Though two String objects are created using new operator and constructor with the same state/value different copy of memory will be allocated to two objects of String class. For example.
+
+String str=new String("ActiveNET"); // str points one memory location, for its 9 chars 18 bytes memory will be allocated.
+
+If one more String object is created with new operator and constructor, though the str and str1 object state are same, different memory will be allocated str and str1.
+String str1=new String("ActiveNET");
+
+Whereas if two String objects are created with the same state by directly assigning value to it, if their state is same, then both the object references will point to same memory location because when String object is directly created using = (assignment operator) followed by value the instead of allocation String objects memory in heap (in java object memory will be always allocated in heap area of the JVM), JVM will use a different memory location called String pool. When first object is created using String str2="ActiveNET"; the JVM will verify with the same state is there any object exist in the String pool or not. If not first time memory will allocate str2 in String pool. If another object is created with the same state as String str3="ActiveNET"; then JVM will verify the same state in String pool, if any string object exist in the pool with "ActiveNET" then str3 also points to the same memory location. Then both str2 and str3 will point to the same memory location.
+
+Why String class is immutable because when we create String str="ActiveNET"; it will point to some memory location where 18 bytes of consecutive memory is available the object reference str will point to that memory location.
+
+If we try to modify String using str=str+" Informatics Pvt Ltd". " Informatics Pvt Ltd" contains 20 characters, the initial String contains 9 characters all together 29 characters 58 bytes of memory is required. Hence JVM will find out where 58 consecutive bytes of memory is available there the new String is copied str object reference points to that new memory location. The str doesn't points 18 bytes memory location. When a memory location is not pointing by any object reference Garbage Collector named one process is JVM will identify such objects as "no longer referenced objects" such objects are marked for garbage collection. This is how String can be modifiable but they will vacate old premises and occupies new premises. This is how String is immutable.
+
+But in case of Emp class 
+	Emp e1=new Emp(1,"ABC", 50000.00, "Designer"); 
+	
+34 bytes available memory location e1 object reference points. After some time if e1 object state is modified as e1.eid(2); e1.setEname("XYZ") etc. e1 object still points to the same memory location but only its state changes. This is how other than String class objects are mutable.
+
+If two String objects are compared using == operator then their location will be compared, whereas if two String object compared using .equals() method their state will be compared. Hence in java we always compare two objects of the same class with equals() method but not by using == operator.
+
+
+StringBuffer & StringBuilder:
+-----------------------------
+String is immutable and StringBuffer is mutable. String is fixed length char array. StringBuffer is a variable length char array. That means it occupies memory as many characters as it contains. In contrast with String in StringBuffer by default 16 characters memory exist irrespective of as many characters as it contains. Mute means modification. That means if String is modified the new memory is allocated to hold old String content and new content in a new memory location, old memory location will be garbage collected. That means in String as many times String is modified memory often create and destroys again and again, but not in StringBuffer.
+
+String str="Surya";
+str=str+"narayana"; // here str object is destroyed and recreated with new state
+
+Way to convert String into StringBuffer
+String str="Surya";
+StringBuffer sb=new StringBuffer(str);
+
+sb.append("narayana"); Suryanarayana
+sb.append(" I.N.V.");
+sb.insert(5, " "); Surya narayana
+sb.trimToSize();
+
+two ways of converting StringBuffer to String
+String str=sb.toString();
+String str1=new String(sb);
+
+StringBuffer methods:
+---------------------
+	sb.append(anydatatype_value);
+	sb.insert(int index, anydatatype_value);
+	setCharAt(int index, char newChar);
+	sb.replace(int start, int end, String newStr);
+	sb.delete(int start, int end);
+	sb.deleteCharAt(int index);
+	sb.reverse();
+	setChartAt(int index, char ch)
+	setLength(int newLength);
+	sb.ensureCapacity(int requiredCapacity);
+	sb.capacity();
+	sb.length();
+	substring(int startIndex, int endIndex+1)
+	sb.trimToSize(); etc functions.
+
+
+String is a predefined secondary data type in Java along with primitive data types byte, short, int, long, float, double, char, boolean.
+
+But StringBuffer is not a predefined data type instead this class is used to manipulate the content of the String. StringBuffer is mutable unlike String.
+
+On an existing String content/value if we want to perform appending one more String to existing String or we want to insert one more String in middle of the String content then we will store String into StringBuffer, invoke insert(), append() operations on StringBuffer and then finally convert StringBuffer into String object.
+
+As same as StringBuffer to String content also we can append another String but only its String object reference pointing location will change. Then what makes the difference between String and StringBuffer?
+
+String is a fixed length char[]/String that means memory is allocated to only as many characters are assigned to String only that much memory is allocated. Hence whenever its value changes it address/location also but memory don't contains space to additional characters appended to String. Whereas in StringBuffer by default 16 characters memory is allocated though less number of characters are assigned to it. For example if "Active" is assigned to StringBuffer in the 16 characters memory "Active" will be accommodated in first 6 characters remaining space of 10 characters are left empty. After creating StringBuffer object with "Active", on the same object if "NET" is appended. "NET will also be stored in the same memory location remaining 3 characters more be occupied. In StringBuffer 9 characters are accommodated, still there is a space for 7 more characters. Like that StringBuffer avoids frequent creation and destruction of memory for StringBuffer object.
+
+When there is a tendency of String more frequently modified in a java application, StringBuffer is more recommended than String.
+
+How to convert String to StringBuffer?
+StringBuffer class is having one no parameter and one String parameter constructor exists. 
+
+String str="Active";
+StringBuffer sb=new StringBuffer(str);
+
+How to convert StringBuffer to String?
+two ways:
+  one way:
+     str=sb.toString();
+  second way:
+	 str=new String(sb);
+	 
+StringBuffer class constructors:
+StringBuffer()
+StringBuffer(String str)
+StringBuffer(CharSequence cs)
+StringBuffer(int capacity)
+
+StringBuffer class methods:
+Note: append() method overloaded for 13 times and insert() method overloaded for 12 times.
+append() adds the content at the end of StringBuffer content. Whereas insert() can add content in the middle of StringBuffer content at specified location, the existing content will be pushed to next positions.
+
+public StringBuffer delete(int start, int end)
+public StringBuffer deleteCharAt(int index)
+public void ensureCapacity(int minCapacity)
+public void getChars(int srcBegin, int srcEnd, char dst[], int destBegin)
+public int indexOf(String str)
+public int indexOf(String str, int fromIndex)
+public int lastIndexOf(String str)
+public int lastIndexOf(String str, int fromIndex)
+public int length()
+public String replace(int start, int end, String str)
+public StringBuffer reverse()
+public void setCharAt(int index, char ch)
+public void setLength(int newLength)
+public String substring(int start)
+public String substring(int start, int endIndex+1)
+public String toString()
+public void trimToSize()
+
+// StringBufferDemo.java
+public class StringBufferDemo {
+   public static void main(String rags[]) {
+       String str="Active";
+	   System.out.println(str+" length is : "+str.length());
+	   
+	   StringBuffer sb=new StringBuffer(str);
+	   System.out.println(sb.capacity()+" "+ sb.length());
+	   
+	   sb.append("NET");
+	   System.out.println(sb.capacity()+" "+ sb.length());
+	   
+	   sb.append(" Inform");
+	   System.out.println(sb.capacity()+" "+ sb.length());
+	   
+	   sb.append("actics");
+	   System.out.println(sb.capacity()+" "+ sb.length());
+
+	   sb.append(" Pvt Ltd");
+	   System.out.println(sb.capacity()+" "+ sb.length());
+	   
+	   sb.append(", Ameerpet, Hyderabad, 500038");
+	   System.out.println(sb.capacity()+" "+ sb.length());
+   }
+}
+
+Note: In the above example what we noticed is by default to StringBuffer 16 characters space will be allocated. If we add any String it will occupy memory for additional number of characters+16 characters space. 16 more characters can be appended to it. If size increases more than its capacity, it doubles the capacity+2 more characters space. Likewise for every its additional capacity of characters only it doubles the size but not for every new number of characters are immediately added to it. JVM burden reduces.
+
+This is how StringBuffer is useful to alter the data of a String frequently but not acts like a String data type. StringBuffer and StringBuilder are exactly same except all methods of StringBuffer class are synchronized and all StringBuilder class methods are asynchronous. 
+
+When StringBuffer object is passed into multiple threads. When one thread is manipulating StringBuffer object, other threads which are using the same StringBuffer object cannot be modified. StringBuffer object's state is always thread-safe and consistent.
+
+Where performance is more important and StringBuffer object state consistency is less important there StringBuilder is recommended to use.
+
+Where performance is less important and StringBuffer object state consistency is more important there StringBuffer is recommended to use.
+
+/*
+String is a fixed length char array
+StringBuffer is a variable length char array
+*/
+// StringBufferDemo1.java
+class StringBufferDemo1 {
+	public static void main(String rags[]) {
+		
+		String str="Active"; // 6
+		StringBuffer sb=new StringBuffer();
+		sb.append(str);
+		
+		System.out.println(sb.capacity()); // 22
+		System.out.println(sb.length()); // 6
+		
+		sb.append("NET"); // 9
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		// ActiveNET Informatics Pvt Ltd
+		sb.append("Informatics"); // 11, 9+11=20, 34
+		System.out.println(sb);
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		sb.insert(9, " ");
+		System.out.println(sb);
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		// ActiveNETInformatics
+		// sb.setChartAt(9, " ");// ActiveNET nformatics
+		
+		sb.append(" Pvt Ltd");
+		System.out.println(sb);
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+
+		// ActiveNET Informatics Pvt Ltd
+		// ActiveNET Informatics Public Ltd
+		sb.replace(22, 25, "Public");	
+		System.out.println(sb);
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		sb.append("...;");
+		System.out.println(sb);
+		
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		sb.trimToSize();
+		System.out.println(sb.capacity());
+		System.out.println(sb.length());
+		
+		// String str1=sb.toString();
+		String str1=new String(sb);
+		System.out.println(str1);
+		System.out.println(str1.length());
+		
+	}
+}

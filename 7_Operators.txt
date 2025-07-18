@@ -1,0 +1,444 @@
+									===========
+									|Operators|
+									===========
+Operators are used to operate on data/value/variables literals/identifiers.
+
+data/literal => value 
+	=> 10 is a int literal
+	=> "Surya" is a String literal
+	11=10++;
+	
+identifier: 
+	int i=10; i is a int identifier/int variable name
+	String sname="Surya"; sname is a String identifier/variable
+	i=i++;
+	
+	int j=20;
+	int k=i+j;
+
+literal: means value. 10 is int literal, true is boolean literal, "Akash" is String literal.
+
+Operators are used to manipulate/change value of variable or used to compare one variable value with other variable value.
+
+Operators are used to operate on variables and values. They are intended to modify the values or compare one variable value with other variable value.
+
+Top-Level classification of Operators: 
+	Arithmetic, Assignment, Increment/Decrement (or) Prefix/Postfix, Logical, Relational, Ternary, Bitwise, Shift
+
+Operators are classified into 3 types:
+--------------------------------------
+Operand => Variable/Value
++,=-,* etc are called operators
+
+i) Unary Operators - Operator which operates on a single operand
+	Pre Increment-Decrement Operators 		++i, --i  ++10
+	Post increment-Decrement Operators		i++, i--  10--
+	Not Operator							!flag
+	~ Bitwise NOT							~i
+	
+ii) Binary Operators
+	Arithmetic Operators	a+b, a-b, a*b, a/b, a%b
+	Assignment Operators	int i=10, i+=10 (or) i=i+10, i-=10, i*=10, i/=10, i%=10
+	Logical Operators	true & true, true | false , ^, &&, ||
+	Relational Operators	==, !=, <, <=, >, >=
+	
+	Bitwise Operators		
+	Shift Operators			
+	
+iii) Ternary Operator/Conditional Operator
+	Ternary Operator		output=(condition)?lhs:rhs
+					int  k= (10>5)    ? 10 : 5;
+
+// ArithmeticOperatorsTest.java
+public class ArithmeticOperatorsTest {
+	public static void main(String rags[]) {
+	
+		int i=5, j=2;
+		int k = i + j;
+		System.out.println(i+" + "+j+" = "+k);
+		//				   5   +   2   =   7
+		
+		int l = i - j;
+		System.out.println(i+" - "+j+" = "+l);
+
+		int m=i * j;
+		System.out.println(i+" * "+j+" = "+m);
+
+		int n=i / j; // '/' is called as division operator
+		System.out.println(i+" / "+j+" = "+n);
+
+		int 
+		o=i % j; // '%' is called as modulus/remainder operator
+		System.out.println(i+" % "+j+" = "+o);
+	}
+}
+
+// OperatorAssignmentTest.java
+public class OperatorAssignmentTest {
+	public static void main(String rags[]) {
+	
+		int i=10; // simple assignment operator
+		
+		i=i+1;
+		System.out.println("i initial value is 10, i + 1 is  = "+i);
+
+		int j=10;
+		j+=1; // addition assignment operator
+		System.out.println("j initial value is 10, j += 1 is  = "+j);
+
+		int k=10;
+		k=k-1;
+		System.out.println("k initial value is 10, k - 1 is  = "+k);
+
+		int l=10;
+		l-=1;
+		System.out.println("l initial value is 10, l-=1 is  = "+l);
+
+		int m=10;
+		m*=10;
+		System.out.println("m initial value is 10, m*=10 is  = "+m);
+
+		int n=10;
+		n/=10;
+		System.out.println("n initial value is 10, n/=10 is  = "+n);
+
+		int o=10;
+		o%=10;
+		System.out.println("o initial value is 10, o%=10 is  = "+o);
+	}
+}
+
+// PrefixPostfixTest.java
+public class PrefixPostfixTest {
+	public static void main(String rags[]) throws Exception {
+		int i=25, j=70;
+		System.out.println("i is "+i); // 25
+		System.out.println("++i is "+(++i)); // 26 // ++i is called as pre-increment/prefix
+		System.out.println("j is "+j); // 70
+		System.out.println("j++ is "+(j++)); // 70 // j++ is called as post-increment/postfix
+		System.out.println("j is "+j); // 71
+		
+		int k=25, l=70;
+		System.out.println("k is "+k); // 25
+		System.out.println("--k is "+(--k)); // 24
+		System.out.println("l is "+l); // 70
+		System.out.println("l-- is "+(l--)); // 70
+		System.out.println("l is "+l); // 69
+	}
+}
+
+Relational operators:
+=====================
+Relational operators are used for making decisions. they are used to compare on numeric, char values.
+==
+!=
+<
+<=
+>
+>=
+
+// RelationalOperatorsTest.java
+public class RelationalOperatorsTest {
+   public static void main(String rags[]) {
+     int a=25; int b=75;
+     double x=35.87; double y=67.43;
+     char c1='b'; char c2='d';
+	 
+     /* 
+      Relational operators can be applied only on primitive data types but not on arrays and objects. byte, short, int, long, float, double, char, boolean are primitive data types.
+     */
+     if(a==b) {
+       System.out.println("a==b is true");
+     } else {
+       System.out.println("a==b is false");
+     }
+	 
+     if(a!=b) {
+       System.out.println("a!=b is true");
+     } else {
+       System.out.println("a!=b is false");
+     }
+	 
+     if(a>=b) {
+       System.out.println("a>=b is true");
+     } else {
+       System.out.println("a>=b is false");
+     }
+	 
+     if(a<=b) {
+       System.out.println("a<=b is true");
+     } else {
+       System.out.println("a<=b is false");
+     }
+
+   }
+}
+
+Logical Operators:
+------------------
+Applied between two conditions / relational operations.
+& Logical AND
+| Logical OR
+^ Logical XOR (caret)
+&& Short circuit AND
+|| Short circuit OR
+
+// LogicalOperatorsTest.java
+public class LogicalOperatorsTest {
+   public static void main(String rags[]) {
+     int a=25; int b=75;
+     double x=35.87; double y=67.43;
+     char c1='b'; char c2='d';
+
+     /* Though first condition is false or second condition will be checked, if any one is false, false will be returned. if both are true then true will be return. if both are false, false will be return. */
+     System.out.println((a>b) & (x<y));
+
+     /* if any one condition is true, true will be returned, if both are false, false, if both are true.  */
+     System.out.println((a>b) | (x<y));
+
+     /*
+       if both are true or false, false. If anyone is true and other one is false, true 
+		x^y=x.y'+y.x'
+	*/
+     System.out.println((c1==c2) ^ (b>100));
+     System.out.println((c1==c2) ^ (b==75));
+	 
+     System.out.println((a>b) && (x<y));
+     System.out.println((a>b) || (x<y));
+   }
+}
+
+
+Ternary Operator (?:):
+----------------------
+A simple if-else condition with one-one return statement can be written as Ternary Operator (?:)
+
+Ternary operator operates on three operands. One of its use is assign the minimum or maximum value of two variables to a third variable.
+
+TO:
+---
+Simple if-else condition
+if-else contains only one-one statement
+that to the statement must return a value
+
+// TernaryOperatorDemo.java
+public class TernaryOperatorDemo {
+   public static void main(String rags[]) {
+ 
+	  int a=126; int b=70; int d=100;
+	  int c=0;
+	  
+	  if(a<b) {
+	     c=a;
+	  } else {
+	     c=b;
+	  }
+	  
+	  c=(a<b)?a:b;
+	  System.out.println(c);
+	  
+	  String str=(a<b)?"a is less than b":"b is less than a";
+	  System.out.println(str);
+
+	  String name="Mr. Bean", email="", mobile="", address="";
+	  // if(str==null) if(str.length()==0) if(str.isEmpty()) 
+	  
+      String err=(name.isEmpty())?"SName cannot be null\n":"";
+      err=err+(email.length()==0)?"Email cannot be null\n":"";
+      err+=(mobile.isEmpty())?"Mobile cannot be null\n":"";
+      err+=(address.isEmpty())?"Address cannot be null\n":"";
+
+		if(err.length()>0) {
+			System.out.println(err);
+		}
+		
+		c=(a<b)?a:(b<d)?b:d;
+		System.out.println(c);
+  }
+}
+
+Bitwise Operators:
+------------------
+Bitwise operators are used to manipulate individual bits of a data item. There are situations where individual bits of data are modified. These operators operate only on byte, short, int and long types.
+
+Operator	Description
+-----------------------
+   &	  		Bitwise AND
+   | (pipe)		Bitwise OR
+   ~ (tilde)	Bitwise NOT 
+   ^ (caret)	Bitwise Exclusive OR
+
+& Operator
+----------
+Bitwise AND (&) operator compares each bit of first operand with each bit of second operand. For instance 71 binary number is 01000111 and 25 binary number is 00011001. If both the bits are 1 and 1 the result is 1, if any one of the bit is 0 the result is 0.
+
+71                          01000111
+25                          00011001
+-------------------------------------
+1                           00000001
+
+byte a=71;
+byte b=25;
+byte c = a & b;
+System.out.println(c); // result is 1
+
+| Operator
+----------
+Bitwise OR operator compares each bit of first operand with each bit of second operand. If the bits of both operands are 1 the result is 1, even if any one of the operand is 1 then the result is 1 and only of both operand bit values are 0 then the result is 0.
+
+71                          01000111
+25                          00011001
+-------------------------------------
+95                          01011111
+
+byte a=71;
+byte b=25;
+byte c = a | b;
+System.out.println(c); // result is 95
+
+^ Bitwise Exclusive OR Operator
+--------------------------------
+Bitwise Exclusive OR Operator compares each bit of first operand with each bit of second operand. If bits of both operands are 0 or 1 then the result is 0. If any one of the operand bit is 1 and other operand is 0 then the result is 1.
+
+int k=i^j;
+
+71                          01000111
+25                          00011001
+------------------------------------
+94                          01011110
+
+byte a=71;
+byte b=25;
+byte c = a ^ b;
+System.out.println(c); // result is 94
+
+
+~ Operator
+-------------
+Bitwise NOT operator is a unary operator. This operator is used only on a single operand. 71 binary value is 01000111. 
+71                         01000111
+~71                      10111000
+
+byte a=71;
+byte b = ~a;
+System.out.println(c); // result is 184
+
+// BitwiseTest.java
+public class BitwiseTest {
+  public static void main(String rags[]) throws Exception {
+
+   // bitwise AND (&)
+   int a=71, b=25;
+   int c=a&b;
+   System.out.println("c is "+c);
+
+   // bitwise inclusive OR (|)
+   int d=71, e=25;
+   int f=d|e;
+   System.out.println("f is "+f);
+
+   // bitwise exclusive OR (^)
+   int g=71, h=25;
+   int i=g^h;
+   System.out.println("i is "+i);
+
+   // bitwise NOT (~)
+   int j=71;
+   int k=~j;
+   System.out.println("k is "+k);
+  }
+}
+
+Shift Operators:
+----------------
+<< Left Shift Operator
+>> Right Shift Operator
+>>> Right Shift Zero Fill Operator
+
+<< Operator (Left shift operator)
+---------------------------------
+The left shift operator is used to shift the bits of a given operand to left for the specified number of positions.
+
+For instance 71 binary value is 01000111, so if we declare a variable:
+int a =71;
+
+shift binary value of the 71 to two bits left.
+int b=a<<2;
+
+binary value of 71 is 01000111
+shift 2 bits left     00011100
+
+The value of 00011100 is 28
+
+>> Operator (Right shift operator)
+----------------------------------
+The right shift operator is used to shift the bits of a given operand to right for the specified number of positions. One most important point is when bits are shifted to right and the left hand side bits are replaced with 0s in case of positive integer values and left hand side bits are replaced with 1s in case of negative integer value.
+
+For instance 71 binary value is 01000111, so if we declare a variable:
+int a =71;
+
+shift binary value of the 71 to two bits right.
+int b=a>>2;
+
+binary value of 71 is 01000111
+shift 2 bits right    00010001
+
+The value of 00010001 is 17.
+
+In case of negative integer value:
+------------------------------------------
+int a=-25;
+
+the binary value is 10011001
+
+if we apply int b=a>>2;
+
+the resultant binary value is:
+10011001
+    100110
+
+For each bit value 1 is appended at the left hand side indicates that the value is negative integer value.
+
+>>> Operator (Right shift zero fill operator)
+---------------------------------------------
+This operator performs the same type of operation performed by right shift operator except that sign bit extension is not one 1. Instead of 1s filled at left most bit in vase of –ve integer value 0s are filled.
+
+This is equivalent to right shift operator with +ve integer value but fills 0 at left hand side in case of –ve integer value.
+
+In case of negative integer value:
+int a=-25;
+the binary value is 10011001
+
+if we apply int b=a>>>2;
+
+the resultant binary value is
+00100110
+
+For each bit value 0 is appended at the end of left hand side though it is negative integer value because of right shift zero fill operator.
+
+
+// ShiftOperatorsTest.java
+public class ShiftOperatorsTest {
+	public static void main(String rags[]) throws Exception {
+
+	// left shift operator
+	int a=25; int b=a<<2;
+	System.out.println("a is "+a);
+	System.out.println("a<<2 is "+b);
+
+	// right shift operator
+	a=25; b=a>>2;
+	System.out.println("a is "+a);
+	System.out.println("a>>2 is "+b);
+
+	// right shift 0 fill operator for –ve integer values
+	a=-25; b=a>>>2;
+	System.out.println("a is "+a);
+	System.out.println("a>>>2 is "+b);
+	
+	System.out.println(Integer.toBinaryString(25));
+	System.out.println(Integer.toOctalString(25));
+	System.out.println(Integer.toHexString(25));
+
+   }
+}
