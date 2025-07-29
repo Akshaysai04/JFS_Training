@@ -79,6 +79,34 @@ String to double conversion:
 -------------------------------
 		String sPerfume="350.00";
 		double perfume=Double.parseDouble(sPerfume);
-		
+------------------------------------------------------------------
+access specifiers:private,default,protected,public
+access modifiers:abstract,static,final,transient,volatile,native,sychronized
+
+
+Java Programming Structure:
+---------------------
+i) package declaration
+ii) impprt statements
+iii) variable declaration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

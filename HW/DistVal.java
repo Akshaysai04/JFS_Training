@@ -1,0 +1,13 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class DistVal {
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 3, 4, 2, 6, 2, 8, 9, 12};
+        Set<Integer> distinctSet = new HashSet<>();
+        for (int val : arr) {
+            distinctSet.add(val);
+        }
+        System.out.println("Distinct values: " + distinctSet);
+    }
+}
