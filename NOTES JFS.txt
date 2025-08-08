@@ -1,3 +1,471 @@
-CLASSPATH
-JAVA_HOME C:\Program Files\Java\jdk-17
-Path	  C:\Program Files\Java\jdk-17\bin
+open command prompt
+javac
+java
+javap java.lang.String
+javap java.lang.System
+
+create one folder D:\2025_SNB2
+
+Datatype			Size					Range
+	byte					1					-128 to 127
+	short				2					-32768 to 32767
+	int 					4
+	long					8
+	float					4
+	double				8
+	char					2
+	boolean			1
+	
+Type casting and Type conversion using wrapper classes:
+--------------------------------------------------------------
+Type casting convert one primitive datatype value into another primitive type value.
+
+esp: double to int conversion
+
+// TypeCastingDemo.java
+public class TypeCastingDemo {
+	public static void main(String rags[]) {
+		int i1=10;
+		byte b1=(byte)i1; // narrow casting needs type casting
+		short s1=(short)i1;
+		long l1=i1; // wide casting don't need typecasting, only assignment
+		float f1=i1;
+		double d1=i1;
+		
+		long l2=10L;
+		byte b2=(byte)l2;
+		short s2=(short)l2;
+		int i2=(int)l2;
+		float f2=(float)l2;
+		double d2=l2;
+		
+		float f3=10.24F;
+		byte b3=(byte)f3;
+		short s3=(short)f3;
+		int i3=(int)f3;
+		long l3=(long)f3;
+		double d3=f3;
+		
+		double d4=10.24;
+		byte b4=(byte)d4;
+		short s4=(short)d4;
+		int i4=(int)d4;
+		long l4=(long)d4;
+		float f4=(float)d4;		
+	}
+}
+
+Type conversion using wrapper classes:
+-------------------------------------------
+byte		short		int			long			float			double			char				boolean
+Byte		Short		Integer		Long		Float		Double			Character		Boolean
+
+Wrapper classes are used to convert 
+	String to primitive conversion
+	primitive to primitive conversion
+	primitive to String conversion
+	
+String to int conversion:
+---------------------------
+	String sAge="20";
+	int age=Integer.parseInt(sAge);
+	
+String to Long conversion:
+------------------------------
+	String sMobile="9848012345";
+	long mobile=Long.parseLong(sMobile);
+	
+String to double conversion:
+-------------------------------
+		String sPerfume="350.00";
+		double perfume=Double.parseDouble(sPerfume);
+		
+int-String conversion:
+------------------------
+int age=20;
+String sAge=age+"";
+			(or)
+Integer in=new Integer(age); // wrapping int into Integer object
+String aAge=in.toString();
+
+primitive (int) - other primitives conversion:
+------------------------------------------------
+byte b1=in.byteValue();
+short s1=in.shortValue();
+long l1=in.longValue();
+float f1=in.floatValue();
+double d1=in.doubleValue();
+
+Convert double to String and int:
+------------------------------------
+double d1=20.34;
+Double d=new Double(d1);
+String str=d.toString();
+int i=d.intValue();
+
+Arrays:
+====
+Array is a collection of variables/values of the same data type (homogeneous)
+
+Single Dim Array:
+-------------------
+// IDimArray.java
+public class IDimArray {
+	public static void main(String rags[]) {
+		// ex on static array
+		// declare int array size of 5
+		int i[]=new int[5];
+		// initialize array variables
+		i[0]=1; i[1]=2; i[2]=3; i[3]=4; i[4]=5;
+
+		// dynamic array declaration and initialization
+		int[]  j = {1,2,3,4,5};
+		
+		// accessing values from array
+		// using length and index
+		int len1=i.length;
+		for(int k=0;k<len1;k++) {
+			System.out.print(i[k]+" ");
+		}
+		System.out.println();
+
+		// using for-each loop
+		for(int k : j) {
+			System.out.print(k+" ");
+		}
+		System.out.println();
+
+		// using streams
+		Arrays.stream(j)
+		.sorted()
+		.forEach(System.out::println);
+	}
+}
+
+Git commands:
+git init
+
+git add *.*
+
+git commit -m "message"
+
+git remote add origin https://github.com/https://github.com/activesurya/JFS_Training
+git remote add origin https://github.com/Mayuriblog/DBMS_TRAINING.git
+
+Note: replace activesurya with your account name
+
+git checkout -b master
+
+git push origin master
+--------------------------------------------------------
+If you have update then you have to follow these steps
+git status
+git add *.*
+git commit -m "message"
+git push origin master
+
+
+// IIDimArray.java
+class IIDimArray {
+	public static void main(String rags[]) {
+		int[][] i=new int[2][3];
+		i[0][0]=1; i[0][1]=2; i[0][2]=3;
+		i[1][0]=4; i[1][1]=5; i[1][2]=6;
+		
+		int j[][]= {
+			{1,2,3},
+			{4,5,6}
+		};
+		
+		// accessing array using index
+		int rowSize=i.length;
+		for(int k=;k<rowSize;k++) {
+			int colSize=i[k].length; // i[k] means accessing each row
+			for(int l=0;l<colSize;l++) {
+				System.out.print(i[k][l]+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		// accessing array using for-each loop
+		for(int l[]:j) {
+			for(int m:l) {
+				System.out.print(m+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+	} 
+}
+
+// IIIDimArray.java
+class IIIDimArray {
+	public static void main(String rags[]) {
+		int i[][][]=new int[2][3][4];
+		
+		i[0][0][0]=1;
+		i[0][0][1]=2;
+		i[0][0][2]=3;
+		i[0][0][3]=4;
+		
+		i[0][1][0]=5;
+		i[0][1][1]=6;
+		i[0][1][2]=7;
+		i[0][1][3]=8;
+		
+		i[0][2][0]=9;
+		i[0][2][1]=10;
+		i[0][2][2]=11;
+		i[0][2][3]=12;
+		
+		i[1][0][0]=13;
+		i[1][0][1]=14;
+		i[1][0][2]=15;
+		i[1][0][3]=16;
+		
+		i[1][1][0]=17;
+		i[1][1][1]=18;
+		i[1][1][2]=19;
+		i[1][1][3]=20;
+		
+		i[1][2][0]=21;
+		i[1][2][1]=22;
+		i[1][2][2]=23;
+		i[1][2][3]=24;
+		
+		int[][][] j={
+			{ {1,2,3,4}, {5,6,7,8}, {9,10,11,12} },
+			{ {13,14,15,16}, {17,18,19,20}, {21,22,23,24} }
+		};
+		
+		int rowLength=i.length; // row length; 2
+		for(int k=0;k<rowLength;k++) {
+			int colLength=i[k].length; // col length; 3
+			for(int l=0;l<colLength;l++) {
+				int rowLength1=i[k][l].length; // row length; 4
+				for(int m=0;m<rowLength1;m++) {
+					System.out.print(i[k][l][m]+" ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		for(int k[][]:j) {
+			for(int l[]:k) {
+				for(int m:l) {
+					System.out.print(m+" ");
+				}
+				System.out.println();
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
+}
+
+access specifiers: private, default, protected, public
+access modifiers: abstract, static, final, transient, volatile, native, sychnronized
+
+Java Programming Structure:
+--------------------------------
+i) package declaration
+ii) import statements
+iii) class declaration
+iv) variable declarations
+v) constructor implementations
+vi) method implementations
+vi) static blocks
+viii) non-static blocks
+
+package logically binds classes written in one directory, so that they can imported into other directories/package. package makes class resuable.
+
+to make class resuable:
+i) declare class as public
+ii) on top of the class, declare current directory name as package
+iii) the package parent folder must be included in the CLASSPATH
+iv) import class anywhere in the system
+
+create following folders:
+D:\pack1
+		pack2
+D:\pack3
+
+D:\pack1
+		pack2
+		A.java
+		B.java
+		C.java
+D:\pack3
+	D.java
+	E.java
+
+// D:\pack1\pack2
+// A.java
+package pack2;
+public class A {
+	private int a;
+	int b;
+	protected int c;
+	public int d;
+	public void print() {
+		System.out.println(a); // Y
+		System.out.println(b); // Y
+		System.out.println(c); // Y
+		System.out.println(d); // Y
+	}
+}
+
+in the run prompt type env
+Edit the System Environment Variables
+click on Environment Variables button
+click on New button
+Variable Name:CLASSPATH
+Variable Value:.;D:\pack1
+click on all OK buttons
+
+// D:\pack1\pack2
+// B is a sub class of class A within the package
+// B.java
+package pack2;
+public class B extends A {
+	public void print() {
+		System.out.println(a); // N
+		System.out.println(b); // Y
+		System.out.println(c); // Y
+		System.out.println(d); // Y
+	}
+}
+
+// D:\pack1\pack2
+// C instantiates class A within the package
+// C.java
+package pack2;
+public class C {
+	public void print() {
+		A a=new A();
+		System.out.println(a.a);
+		System.out.println(a.b);
+		System.out.println(a.c);
+		System.out.println(a.d);
+	}
+}
+
+javac C.java
+
+cd..
+cd..
+cd pack3
+	or
+cd\
+cd pack3
+	or
+cd d:\pack3
+// D:\pack3\
+// sub class of class A outside the package
+// D.java
+import pack2.A;
+public class D extends A {
+	public void print() {
+		// System.out.println(a);
+		// System.out.println(b);
+		System.out.println(c);
+		System.out.println(d);
+	}
+}
+
+javac D.java
+
+// class E instantiates class A outside the package
+// E.java
+import pack2.A;
+public class E {
+	public void print() {
+		A a=new A();
+		// System.out.println(a.a);
+		// System.out.println(a.b);
+		// System.out.println(a.c);
+		System.out.println(a.d);
+	}
+}
+
+Syntax of declaring class, variable, constructor and method:
+------------------------------------------------------------------
+class syntax:
+<access_specifier> <access_modifier> class ClassName <extends SuperClass> <implements SuperInterface1, SuperInterface2> {
+}
+
+default		abstract	class ClassName {}
+public		final
+
+Ex:
+class Hello {}
+public class Hello {}
+public abstract class MyMath {}
+public final class Emp {}
+
+variable syntax:
+<access_specifier> <access_modifier> data_type varName<=value>;
+private			final				primitive_types		myAgeIsIDontKnow;
+default			static			array						$my_age_is_i_dont_know;
+protected		transient		class
+public			volatile
+
+constructor syntax:
+<access_specifier> Constructor(<param_type1 param_name1, param_type2 param_name2, .....>) {}
+
+private			ClassNameAsConstructor() {}
+default
+protected
+public	
+
+Ex:
+class Emp {
+	int eid; String ename; double sal; String desig;
+	Emp() {} // no parameter constructor
+	Emp(int eid, String ename, double sal, String desig) {} // parameterized constructor
+}
+
+method syntax:
+<access_specifier> <access_modifier> return_type methodName(params,....) {}
+
+private				abstract				primitive_type		methodName() {} 
+default				static					array
+protected			final					class
+public				native					void
+						synchronized
+Consequence of applying access specifiers and access modifiers on class,variable,construtor and method
+---------------------------
+default on class: can be inherited and instantiated within the directory
+public on class : can be inherited and instatiated and outside the package
+
+abstract class : 
+====================================================================================================
+							DataBase Programming
+Message Passing
+Pass By Value
+----------------------
+Passing primitive types as parameters in the method is called PBV
+//PDV.java
+class PBV{
+	public static void main(String args[]){
+	int i=20;
+	boolean b=true;
+	double d=120.00;
+	char ch='M';
+	passByValue(d,b,c);
+	System.out.println(i+" "+d+" "+b+" "+ch);
+}
+void passByValue(int age,double price,boolean pass,char gender){
+		age++;
+		price+=100;
+		pass=true;
+		gender='F';
+}
+}
+-----------------------------------------------
+Pass-BY-Reference:-
+-------------------------------
+Passing secondary types(arrays and objects)
